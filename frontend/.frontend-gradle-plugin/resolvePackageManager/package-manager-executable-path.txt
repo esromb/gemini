@@ -1,0 +1,1 @@
+/Users/kalesrom/Downloads/gemini/frontend/node/bin/npm

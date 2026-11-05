@@ -1,0 +1,14 @@
+plugins {
+	id "org.siouan.frontend-jdk17"  version "10.0.0"
+}
+frontend {
+	// Automatically download and use this Node version
+	nodeVersion.set("24.22.2")
+
+	// Choose your tool: npm, pnpm, or yarn
+	publishScript.set("npm")
+
+	// Maps to your package.json production script (e.g., "npm run build")
+	assembleScript.set("run build")
+//	packageJsonDirectory.set("/frontend")
+}

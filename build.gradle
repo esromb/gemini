@@ -12,11 +12,13 @@ java {
 		languageVersion = JavaLanguageVersion.of(17)
 	}
 }
-
 repositories {
 	mavenCentral()
 }
 
+springBoot {
+	mainClass = 'esrom.gemini.llm.gemini.GeminiApplication'
+}
 ext {
 	set('springAiVersion', "2.0.1")
 }
@@ -26,6 +28,7 @@ dependencies {
 	implementation 'org.springframework.ai:spring-ai-starter-model-google-genai'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation(project(":frontend"))
 }
 
 dependencyManagement {
@@ -34,6 +37,24 @@ dependencyManagement {
 	}
 }
 
+// Ensure the frontend builds before the backend archives
+tasks.named("processResources") {
+	dependsOn(":frontend:assembleFrontend")
+}
+// Task to bundle frontend assets into Spring Boot's static resources path
+tasks.register("copyFrontendAssets", Copy) {
+	dependsOn(":frontend:assembleFrontend")
+	from(project(":frontend").layout.projectDirectory.dir("build")) // or "build" depending on Vite/CRA
+	into(layout.buildDirectory.dir("resources/main/static"))
+}
+
+tasks.named("bootJar") {
+	dependsOn("copyFrontendAssets")
+}
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+resolveMainClassName.dependsOn('copyFrontendAssets')
+jar.dependsOn('copyFrontendAssets')
+compileTestJava.dependsOn('copyFrontendAssets')
