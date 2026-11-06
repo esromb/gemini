@@ -7,3 +7,12 @@ HTTP POST
 
 To run this application you need environment variable GOOGLE_GENAI_API_KEY which you will 
 get from Google AI studio API KEY
+
+To see the react app which is currently work in progress, you can 
+CD to frontend and run 
+
+npm run start
+
+after that open
+
+http://localhost:3000/
