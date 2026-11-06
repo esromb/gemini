@@ -44,7 +44,7 @@ tasks.named("processResources") {
 // Task to bundle frontend assets into Spring Boot's static resources path
 tasks.register("copyFrontendAssets", Copy) {
 	dependsOn(":frontend:assembleFrontend")
-	from(project(":frontend").layout.projectDirectory.dir("build")) // or "build" depending on Vite/CRA
+	from(project(":frontend").layout.projectDirectory.dir("dist")) // or "build" depending on Vite/CRA
 	into(layout.buildDirectory.dir("resources/main/static"))
 }
 
