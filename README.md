@@ -9,9 +9,11 @@ To run this application you need environment variable GOOGLE_GENAI_API_KEY which
 get from Google AI studio API KEY
 
 To see the react app which is currently work in progress, you can 
-CD to frontend and run 
+CD to frontend and run npm start
 
-npm run start
+```
+cd frontend
+npm run start```
 
 after that open
 
