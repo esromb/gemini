@@ -13,7 +13,8 @@ CD to frontend and run npm start
 
 ```
 cd frontend
-npm run start```
+npm run start
+```
 
 after that open
 
