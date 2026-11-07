@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {KeyboardEvent, useRef, useState} from 'react';
 import styles from './chat-container.module.scss';
 import TypingIndicator from "../typing-indicator/typing-indicator";
 import type {IChatQueryAndResponse} from "./chat-container.types";
@@ -9,8 +9,16 @@ export const ChatContainer: React.FC = () => {
     const [chatQueryAndResponse, setChatQueryAndResponse] = useState<IChatQueryAndResponse[]>([]);
     const [isChatRequestPending, setIsChatRequestPending] = useState<boolean>(false);
     const textInput = useRef<HTMLInputElement>(null)
+    const submitButton = useRef<HTMLButtonElement>(null)
     const toggleChat = () => {
         setIsOpen(!isOpen);
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+        if (event.key === 'Enter') {
+            // Prevent the default form submission behavior if necessary
+            event.preventDefault();
+            submitRequest().then(() => console.log('request submitted'));
+        }
     };
     const submitRequest = async () => {
         if (textInput.current?.value !== '') {
@@ -33,18 +41,35 @@ export const ChatContainer: React.FC = () => {
     return (
         <div className={`${styles['chat-wrapper']} ${isOpen ? styles['is-open'] : ''}`}>
             {/* Floating Action Button */}
-            <button
-                className={styles['chat-toggle-btn']}
-                onClick={toggleChat}
-                aria-label="Toggle chat"
-            >
-                {isOpen ? '✕' : '💬'}
-            </button>
+            {!isOpen &&
+                <button
+                    className={styles['chat-toggle-btn']}
+                    onClick={toggleChat}
+                    aria-label="Open chat"
+                >
+                    💬
+                </button>
+            }
+
 
             {/* Main Chat Window */}
             <div className={styles['chat-window']}>
                 <div className={styles['chat-header']}>
-                    <h3>Live Support</h3>
+                    <h3>
+                        Live Support
+                        {isOpen &&
+                            <span>
+                                  <button
+                                      className={styles['chat-close-btn']}
+                                      onClick={toggleChat}
+                                      aria-label="Open chat"
+                                  >
+                                x
+                            </button>
+                            </span>
+
+                        }
+                    </h3>
                 </div>
 
                 <div className={styles['chat-body']}>
@@ -73,10 +98,11 @@ export const ChatContainer: React.FC = () => {
                         type="text"
                         ref={textInput}
                         disabled={isChatRequestPending}
+                        onKeyDown={handleKeyDown}
                         placeholder="Type a message..."
                         className={styles['chat-input']}
                     />
-                    <button className={styles['chat-send-btn']} onClick={submitRequest}>Send</button>
+                    <button className={styles['chat-send-btn']} onClick={submitRequest} ref={submitButton}>Send</button>
                 </div>
             </div>
         </div>

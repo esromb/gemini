@@ -34,6 +34,11 @@
       padding: 8px 12px
    }
   // Toggle button styling
+  .chat-close-btn {
+      float: right;
+      align-items: right;
+      justify-content: right;
+  }
   .chat-toggle-btn {
     width: 56px;
     height: 56px;
