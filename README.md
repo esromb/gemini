@@ -13,8 +13,14 @@ CD to frontend and run npm start
 
 ```
 cd frontend
-npm run start```
+npm run start
+```
 
 after that open
 
 http://localhost:3000/
+
+
+Running spring boot and chat with Gemini
+
+<img width="1180" height="613" alt="image" src="https://github.com/user-attachments/assets/133356fd-e850-4b9a-b208-dd89bd5a1b89" />
