@@ -60,6 +60,7 @@ export const ChatContainer: React.FC = () => {
                         return (
                             <>
                                 <div key={`query-${index}`} className={styles['right-aligned-box']}>{chatQryResponse.query}</div>
+                                <br/>
                                 {chatQryResponse.response && (
                                     <div key={`query-${index}`} className={styles['left-aligned-box']}>{chatQryResponse.response}</div>
                                 )}
