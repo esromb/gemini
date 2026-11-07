@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import {ChatContainer} from "./components/chat/chat-container";
 export const App = () => {
-  const [count, setCount] = useState<number>(0);
-
   return (
       <div style={{ textAlign: 'center', marginTop: '50px' }}>
-        <h1>Work in Progress. This component will be used to chat with Gemini chat bot</h1>
-        <button onClick={() => setCount((prev) => prev + 1)}>
-          Count is: {count}
-        </button>
+          <h1>Work in Progress. This component will be used to chat with Gemini chat bot</h1>
+          <h1>
+              Please press the button to chat with the agent
+             <>
+                 <ChatContainer></ChatContainer>
+             </>
+          </h1>
+
       </div>
   );
 };

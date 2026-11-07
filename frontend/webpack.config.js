@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
     entry: './src/index.tsx',
@@ -9,19 +10,50 @@ module.exports = {
         clean: true,
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.scss', '.css'],
     },
     module: {
         rules: [
             {
-                test: /\.(ts|tsx)$/,
-                use: 'ts-loader',
-                exclude: /node_modules/,
+                test: /\.(js|jsx|ts|tsx)$/i, // Case-insensitive matching
+                exclude: /node_modules/,     // Keep this to exclude node_modules
+                use: {
+                    loader: 'babel-loader',    // or 'ts-loader' if using TypeScript
+                    options: {
+                        presets: [
+                            '@babel/preset-env',
+                            [
+                                '@babel/preset-react',
+                                {
+                                    runtime: 'automatic',
+                                }
+                            ] // Required for React 19 JSX
+                        ]
+                    }
+                }
             },
             {
-                test: /\.s[ac]ss$/i,
-                type: "css/auto",
-                use: ["style-loader",'css-loader',"sass-loader"],
+                test: /\.m?js/,
+                resolve: {
+                    fullySpecified: false,
+                },
+            },
+            {
+                test: /\.module\.(scss|css)$/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                mode: 'local',
+                                namedExport: false, // Fixes "Cannot read properties of undefined"
+                                exportLocalsConvention: 'asIs',
+                            }
+                        },
+                    },
+                    'sass-loader'
+                ],
             },
         ],
     },
@@ -38,6 +70,6 @@ module.exports = {
     },
     experiments: {
         // Enables the built-in CSS support of webpack
-        css: true,
+        css: false,
     },
 };
