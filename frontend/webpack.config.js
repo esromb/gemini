@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
 
 module.exports = {
     entry: './src/index.tsx',
@@ -67,6 +66,14 @@ module.exports = {
         open: true,
         hot: true,
         historyApiFallback: true,
+        proxy: [
+            {
+                context: ['/gemini/chat'], // Match your Spring Boot API endpoints
+                target: 'http://localhost:8080', // Spring Boot backend port
+                changeOrigin: true,
+                secure: false,
+            },
+        ],
     },
     experiments: {
         // Enables the built-in CSS support of webpack
