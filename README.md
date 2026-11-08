@@ -26,7 +26,6 @@ http://localhost:3000/
 
 Running spring boot and chat with Gemini
 
-<img width="1137" height="609" alt="image" src="https://github.com/user-attachments/assets/1827f544-ecc7-4308-8cf3-5e365fdbd86b" />
+<img width="1158" height="813" alt="image" src="https://github.com/user-attachments/assets/c6c1d449-c65a-429d-b923-5987b78d019c" />
 
-<img width="1139" height="625" alt="image" src="https://github.com/user-attachments/assets/9682ecbe-827f-4483-9355-14a23123471a" />
 
