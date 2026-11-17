@@ -80,3 +80,11 @@ minikube service frontend-service
 
 you will see something like this:
 
+<img width="814" height="249" alt="image" src="https://github.com/user-attachments/assets/c05533f5-2788-4f90-a4f8-abdd0d016515" />
+
+click the url and you will be directed to react UI page:
+
+<img width="1420" height="805" alt="image" src="https://github.com/user-attachments/assets/8bb33a48-b474-4c5f-8b61-4afef20c0f77" />
+
+
+
