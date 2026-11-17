@@ -38,3 +38,4 @@ out/
 /frontend/build
 /frontend/node_modules
 /frontend/node
+.env
