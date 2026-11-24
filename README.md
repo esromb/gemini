@@ -9,7 +9,15 @@ HTTP POST
 http://localhost:8080/gemini/chat
 
 To run this application you need environment variable GOOGLE_GENAI_API_KEY which you will 
-get from Google AI studio API KEY
+get from Google AI studio API KEY.
+
+This code currently deployed in AWS
+
+AWS ElasticBean
+http://gemini-spring-ai-react-app-env.eba-5ht72kw2.us-east-2.elasticbeanstalk.com/
+
+EC2 instance: 
+http://3.22.175.216:8080/
 
 To see the react app which is currently work in progress, you can 
 CD to frontend and run npm start
